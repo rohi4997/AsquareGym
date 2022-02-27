@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreen"
-    android:background="@drawable/asq">
+    android:background="@drawable/asqqq">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -24,15 +24,14 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="We promise\nWe will make you young too"
+        android:layout_marginBottom="76dp"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
         android:gravity="center"
+        android:text="We promise\nWe will make you young too"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

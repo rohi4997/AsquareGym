@@ -12,9 +12,8 @@
         android:title="Exit"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/like"
+        android:id="@+id/logout"
         android:orderInCategory="4"
-        android:title="Like"
-        app:showAsAction="always"
+        android:title="Logout"
         android:icon="@drawable/heart"/>
 </menu>

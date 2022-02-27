@@ -14,11 +14,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        android:background="#46C119"/>
+        android:background="#3DDBCD"/>
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
@@ -27,149 +28,126 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         android:background="@color/white">
 
-
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:background="@drawable/bg_edit"
+                android:inputType="textPersonName"
+                android:textColorHint="#BDB7B7"
+                android:hint="Search Your Product"
+                android:textColor="@color/black"
+                android:drawableLeft="@drawable/ic_baseline_search_24"
+                android:drawableTint="#D1CDCD"
+                android:drawablePadding="20dp"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/verticalRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="5dp"
+               />
 
             <LinearLayout
-                android:layout_marginTop="10dp"
-                android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ali"
-                    android:scaleType="centerCrop"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Death On The Nile (2022)"
-                    android:textSize="20dp"
-                    android:textFontWeight="800"
-                    android:textColor="@color/black"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/deathonnile"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/batman"
-                    android:scaleType="centerCrop"/>
                 <TextView
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Categories"
+                    android:textColor="#6A6363"
+                    android:gravity="center"
+                    android:textSize="30dp"
+                    android:textFontWeight="400"
+                    android:fontFamily="@font/roboto_medium"/>
+                <TableLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Batman"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str1"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:padding="5dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/batmann"
-                    android:scaleType="centerCrop"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Batman"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:padding="5dp"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str1"
-                    android:textColor="@color/black"
-                    android:padding="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:padding="5dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/disney"
-                    android:scaleType="centerCrop"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Disney"
-                    android:textColor="@color/black"
-                    android:padding="5dp"
-                    android:textSize="20dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str1"
-                    android:textColor="@color/black"
-                    android:padding="5dp"/>
+                    android:orientation="vertical"
+                    >
+
+                    <TableRow>
+                        <ImageView
+                            android:id="@+id/c1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:src="@drawable/dumbellss"
+                            android:scaleType="fitCenter"
+                            android:layout_margin="5dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/c2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:src="@drawable/handgrips"
+                            android:scaleType="fitCenter"
+                            android:layout_margin="5dp"
+                            />
+                    </TableRow>
+                    <TableRow>
+                        <ImageView
+                            android:id="@+id/c3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:src="@drawable/gymsets"
+                            android:scaleType="fitCenter"
+                            android:layout_margin="5dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/c4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:src="@drawable/more"
+                            android:scaleType="fitCenter"
+                            android:layout_margin="5dp"
+                            />
+                    </TableRow>
+                </TableLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:padding="5dp"
-                >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ali"
-                    android:scaleType="centerCrop"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Batman"
-                    android:textSize="20dp"
-                    android:padding="5dp"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str1"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                   />
-            </LinearLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/horizontalRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#C8DFD475"
+                android:paddingBottom="5dp" />
 
         </LinearLayout>
-
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_marginTop="20dp"
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="58dp"

@@ -7,14 +7,14 @@
         />
     <item android:id="@+id/menu_notification"
         android:title="Notification"
-        android:icon="@drawable/notifications"
+        android:icon="@drawable/person_24"
         />
     <item android:id="@+id/menu_search"
         android:title="Favourites"
-        android:icon="@drawable/heart"
+        android:icon="@drawable/cart_24"
         />
     <item android:id="@+id/menu_profile"
         android:title="Play"
-        android:icon="@drawable/play"
+        android:icon="@drawable/options_24"
         />
 </menu>

@@ -25,7 +25,8 @@
         app:layout_constraintBottom_toTopOf="@+id/cleanliness"
         app:layout_constraintEnd_toEndOf="@+id/cleanliness"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/cleanliness" />
+        app:layout_constraintStart_toStartOf="@+id/cleanliness"
+        android:fontFamily="@font/roboto_medium"/>
 
     <RatingBar
         android:id="@+id/food"
