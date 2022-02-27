@@ -1,4 +1,5 @@
 package com.rohit.cse225ca1.adapter
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rohit.cse225ca1.R
 import com.rohit.cse225ca1.data.MyEquipments
-import com.rohit.cse225ca1.fragments.HomeFragment
+import com.rohit.cse225ca1.fragments.CartFragment
 
-class MyAdapter(val context: HomeFragment, val equipments:ArrayList<MyEquipments>):RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
+class CartAdapter(val context: CartFragment, val equipments:ArrayList<MyEquipments>):RecyclerView.Adapter<CartAdapter.MyViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.custom_view_group,parent,false)
+        val view = inflater.inflate(R.layout.category_one_viewgroup,parent,false)
         return MyViewHolder(view)
     }
 

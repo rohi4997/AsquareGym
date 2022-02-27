@@ -10,141 +10,26 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:background="#3DDBCD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        android:background="#3DDBCD"/>
+        />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="60dp"
+
+    <FrameLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        android:background="@color/white">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/editTextTextPersonName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:background="@drawable/bg_edit"
-                android:inputType="textPersonName"
-                android:textColorHint="#BDB7B7"
-                android:hint="Search Your Product"
-                android:textColor="@color/black"
-                android:drawableLeft="@drawable/ic_baseline_search_24"
-                android:drawableTint="#D1CDCD"
-                android:drawablePadding="20dp"
-                android:layout_margin="5dp"
-                android:padding="10dp"
-                />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/verticalRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="5dp"
-               />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Categories"
-                    android:textColor="#6A6363"
-                    android:gravity="center"
-                    android:textSize="30dp"
-                    android:textFontWeight="400"
-                    android:fontFamily="@font/roboto_medium"/>
-                <TableLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
-
-                    <TableRow>
-                        <ImageView
-                            android:id="@+id/c1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="2"
-                            android:gravity="center"
-                            android:src="@drawable/dumbellss"
-                            android:scaleType="fitCenter"
-                            android:layout_margin="5dp"
-                            />
-
-                        <ImageView
-                            android:id="@+id/c2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="2"
-                            android:gravity="center"
-                            android:src="@drawable/handgrips"
-                            android:scaleType="fitCenter"
-                            android:layout_margin="5dp"
-                            />
-                    </TableRow>
-                    <TableRow>
-                        <ImageView
-                            android:id="@+id/c3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="2"
-                            android:gravity="center"
-                            android:src="@drawable/gymsets"
-                            android:scaleType="fitCenter"
-                            android:layout_margin="5dp"
-                            />
-
-                        <ImageView
-                            android:id="@+id/c4"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="2"
-                            android:gravity="center"
-                            android:src="@drawable/more"
-                            android:scaleType="fitCenter"
-                            android:layout_margin="5dp"
-                            />
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/horizontalRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#C8DFD475"
-                android:paddingBottom="5dp" />
-
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_marginTop="20dp"

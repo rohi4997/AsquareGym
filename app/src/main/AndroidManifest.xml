@@ -10,10 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CSE225CA1">
         <activity
-            android:name=".authentication.GoogleSignIN"
-            android:exported="true" >
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
+            android:name=".MyCart"
+            android:exported="false" />
+        <activity
+            android:name=".catagoriesrecycler.CategoryThree"
+            android:exported="false" />
+        <activity
+            android:name=".catagoriesrecycler.CategoryTwo"
+            android:exported="false" />
+        <activity
+            android:name=".catagoriesrecycler.CategoryOne"
+            android:exported="false" />
 
-        </activity>
+        <activity
+            android:name=".authentication.GoogleSignIN"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".authentication.RegisterActivity"
             android:exported="false" />
@@ -29,7 +45,6 @@
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

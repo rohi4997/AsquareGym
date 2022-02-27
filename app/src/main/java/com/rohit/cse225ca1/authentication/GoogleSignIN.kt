@@ -104,6 +104,7 @@ open class GoogleSignIN : AppCompatActivity() {
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e)
+                hideProgressDialog()
             }
         }
     }
