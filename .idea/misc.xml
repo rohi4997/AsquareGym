@@ -20,15 +20,19 @@
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/activity_register.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/activity_splash_screen.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/button_background.xml" value="0.2129115006412997" />
+        <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/cart_item_viewgroup.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/category_one.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/category_one_viewgroup.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/custom_view_group.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/dialog_progress.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/fragment_cart.xml" value="0.2013681060282172" />
+        <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/fragment_edit_profile.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/fragment_home.xml" value="0.2129115006412997" />
+        <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/fragment_item_detail.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/fragment_more.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/fragment_profile.xml" value="0.2013681060282172" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/google_sign_in.xml" value="0.2129115006412997" />
+        <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/item_detail.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/my_cart.xml" value="0.2129115006412997" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/rating_bar.xml" value="0.259375" />
         <entry key="..\:/AndroidStudioProjects/CSE225CA1/app/src/main/res/layout/viewpager_viewgroup.xml" value="0.2129115006412997" />

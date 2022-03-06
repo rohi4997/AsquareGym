@@ -1,9 +1,12 @@
 package com.rohit.cse225ca1
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity()
     lateinit var profileFragmant: ProfileFragment
     lateinit var cartFragmant: CartFragment
     lateinit var moreFragmant: MoreFragment
+    lateinit var mProgressDialog:Dialog
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -42,11 +46,13 @@ class MainActivity : AppCompatActivity()
         val search=findViewById<EditText>(R.id.editTextTextPersonName)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //showProgressDialog("Please Wait")
         homeFragmant = HomeFragment()
         supportFragmentManager.beginTransaction().replace(R.id.frameLayout,homeFragmant)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
         window.statusBarColor=this.resources.getColor(R.color.teal_200)
 
+        Log.d("UPI","In Main Activity ")
 
         auth = FirebaseAuth.getInstance()
         initializeClient()
@@ -57,7 +63,11 @@ class MainActivity : AppCompatActivity()
         toolbar.setTitle("A SQUARE FITNESS")
         setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.person_24)
-        toolbar.setNavigationOnClickListener { Toast.makeText(this,"Back Arrow", Toast.LENGTH_SHORT).show() }
+        toolbar.setNavigationOnClickListener {
+            profileFragmant = ProfileFragment()
+            supportFragmentManager.beginTransaction().replace(R.id.frameLayout,profileFragmant)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+        }
 
         //Bottom ToolBar
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
@@ -65,7 +75,6 @@ class MainActivity : AppCompatActivity()
             //Fragment selectedItem=null
             when (it.itemId) {
                 R.id.menu_home -> {
-                    Toast.makeText(this,"Home", Toast.LENGTH_SHORT).show()
                     homeFragmant = HomeFragment()
                     supportFragmentManager.beginTransaction().replace(R.id.frameLayout,homeFragmant)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
@@ -83,7 +92,7 @@ class MainActivity : AppCompatActivity()
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
                     true
                 }
-                R.id.menu_profile -> {
+                R.id.more -> {
                     moreFragmant = MoreFragment()
                     supportFragmentManager.beginTransaction().replace(R.id.frameLayout,moreFragmant)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
@@ -92,9 +101,8 @@ class MainActivity : AppCompatActivity()
                 else -> false
             }
         }
-
+        //mProgressDialog.dismiss()
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar,menu)
@@ -104,15 +112,7 @@ class MainActivity : AppCompatActivity()
     //option Menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id:Int =item.itemId
-        if(id==R.id.toast) {
-            Toast.makeText(applicationContext,"Settings",Toast.LENGTH_LONG).show()
-        }
-        else if(id==R.id.rate){
-            Toast.makeText(applicationContext,"Settings",Toast.LENGTH_LONG).show()
-            intent = Intent(this, RatingBar::class.java)
-            startActivity(intent)
-        }
-        else if(id==R.id.logout){
+       if(id==R.id.logout){
             signOut()
             val intnt = Intent(this,GoogleSignIN::class.java)
             startActivity(intnt)
@@ -134,5 +134,15 @@ class MainActivity : AppCompatActivity()
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
+    }
+
+    fun showProgressDialog(text:String){
+        mProgressDialog= Dialog(this)
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+        val dtv= mProgressDialog.findViewById<TextView>(R.id.textView)
+        dtv.text=text
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.setCanceledOnTouchOutside(false)
+        mProgressDialog.show()
     }
 }

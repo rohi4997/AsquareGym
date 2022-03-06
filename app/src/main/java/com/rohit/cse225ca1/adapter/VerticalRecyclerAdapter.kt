@@ -1,5 +1,4 @@
 package com.rohit.cse225ca1.adapter
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,31 +10,82 @@ import com.rohit.cse225ca1.R
 import com.rohit.cse225ca1.data.MyEquipments
 import com.rohit.cse225ca1.fragments.HomeFragment
 
-class MyAdapter(val context: HomeFragment, val equipments:ArrayList<MyEquipments>):RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
+
+class MyAdapter(val context: HomeFragment, val equipments:ArrayList<MyEquipments>,private val listener:OnClListener):RecyclerView.Adapter<MyAdapter.MyViewHolder>(){ //,private val listener: OnItemClickListener
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.custom_view_group,parent,false)
         return MyViewHolder(view)
+
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem=equipments[position]
-        //holder.title.text = equipments[position]
         holder.title.text = currentItem.title
         holder.description.text=currentItem.description
         holder.price.text=currentItem.price.toString()
         Glide.with(context).load(currentItem.image).into(holder.image)
+
     }
 
     override fun getItemCount(): Int {
         return equipments.size
     }
 
-    class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+    inner class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView),View.OnClickListener{  //,listener: OnItemClickListener
         var title = itemView.findViewById<TextView>(R.id.title)
         var description = itemView.findViewById<TextView>(R.id.description)
         var price :TextView=itemView.findViewById(R.id.price)
         var image = itemView.findViewById<ImageView>(R.id.itemImage)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+        override fun onClick(p0: View?) {
+            val position=adapterPosition
+            if (position!=RecyclerView.NO_POSITION){
+                listener.onItemClick(position)
+            }
+        }
+    }
+
+    interface OnClListener{
+        fun onItemClick(position: Int)
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+//        holder.itemView.setOnClickListener(object :View.OnClickListener{
+//            override fun onClick(p0: View?) {
+//
+//                val activity=p0!!.context as AppCompatActivity
+//
+//                val intent = Intent (activity, ItemDetail::class.java)
+//                val bundle = Bundle()
+//                bundle.putString("title",currentItem.title)
+//                bundle.putString("price",currentItem.price.toString())
+
+//                intent.putExtra("name",currentItem.title)
+//                intent.putExtra("price",currentItem.price)
+//                intent.putExtra("detail",currentItem.description)
+//                intent.putExtra("image",currentItem.image)
+//                startActivity(activity, intent,bundle)
+
+//                val activity=p0!!.context as AppCompatActivity
+//                val itemDetailFrag=ItemDetailFragment()
+//                activity.supportFragmentManager.beginTransaction().replace(R.id.frameLayout,itemDetailFrag).addToBackStack(null).commit()
+//            }
+
+//        })

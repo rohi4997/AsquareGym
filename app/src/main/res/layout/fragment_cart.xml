@@ -4,13 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fragments.CartFragment">
+    tools:context="fragments.CartFragment"
+    android:orientation="vertical"
+    android:weightSum="12">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myCart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingBottom="5dp"
+        android:layout_weight="10"
+        />
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/totalAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Amount"
+        android:gravity="center"
+        android:textColor="#857D7D"
+        android:textSize="20sp"
+        android:padding="10dp"
+        />
+
+    <Button
+        android:id="@+id/place"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Place Order"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
         />
 
 </LinearLayout>

@@ -1,30 +1,36 @@
 package com.rohit.cse225ca1.authentication
 
+import android.app.AlertDialog
 import android.app.Dialog
-import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType.TYPE_CLASS_NUMBER
 import android.util.Log
+import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.rohit.cse225ca1.MainActivity
 import com.rohit.cse225ca1.R
 
+
 open class GoogleSignIN : AppCompatActivity() {
+    private  lateinit var dbref: DatabaseReference
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
     lateinit var mProgressDialog:Dialog
+    lateinit var phone:String
+
     private companion object {
         private const val RC_SIGN_IN = 100
         private const val TAG = "GOOGLE_SIGN_IN_TAG"
@@ -34,8 +40,9 @@ open class GoogleSignIN : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.google_sign_in)
+        dbref = Firebase.database.reference
         auth = FirebaseAuth.getInstance()
-        if (auth.currentUser!=null){
+        if (auth.currentUser!=null ){
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
@@ -44,8 +51,8 @@ open class GoogleSignIN : AppCompatActivity() {
         initializeClient()
 
         googleSignInBtn.setOnClickListener {
-            startGoogleSignIn()
-            showProgressDialog("Please Wait")
+            takePhone()
+
         }
     }
 
@@ -75,19 +82,64 @@ open class GoogleSignIN : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    hideProgressDialog()
+
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser // user object
-                    Toast.makeText(this, """Welcome ${user?.displayName}  """, Toast.LENGTH_LONG).show()
+                    //storing in realtime database
+                    val splittedlist = user?.email.toString().split(".")
+                    val uid=splittedlist[0]
+                    dbref.child("users").child(uid).child("name").setValue(user?.displayName)
+                    dbref.child("users").child(uid).child("phone").setValue(phone)
+                    dbref.child("users").child(uid).child("email").setValue(user?.email)
+                    dbref.child("users").child(uid).child("image").setValue(user?.photoUrl.toString())
+
+                    hideProgressDialog()
                     val i = Intent(this, MainActivity::class.java)
                     startActivity(i)
                     finish()
+                    //Toast.makeText(this, """Welcome ${user?.displayName}  """, Toast.LENGTH_LONG).show()
+                    //takePhone()
                 } else {
                     hideProgressDialog()
                     // If sign in fails, display a message to the user.
                     Toast.makeText(this, "Sign In Failed", Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    private  fun takePhone() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("+91")
+            .setMessage("Enter Your Phone")
+            .setCancelable(true)
+            // .setMessage("this is alert")
+            .setIcon(android.R.drawable.ic_menu_call)
+
+        val input = EditText(this@GoogleSignIN)
+        val lp = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT
+        )
+        input.hint="Enter Your Phone"
+        input.inputType=TYPE_CLASS_NUMBER
+
+        input.layoutParams = lp
+        builder.setView(input)
+
+        //performing positive action
+        builder.setPositiveButton("Go") { dialogInterface, which ->
+
+            if (input.text==null || input.text.isEmpty() || !(input.length()==10 || input.length()==12 || input.length()==13)){
+                Toast.makeText(applicationContext, "Please Enter a valid Phone No", Toast.LENGTH_LONG).show()
+            }else {
+                phone=input.text.toString()
+                startGoogleSignIn()
+                showProgressDialog("Please Wait")
+            }
+        }
+
+        val alertDialog:AlertDialog = builder.create()
+        alertDialog.show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -109,8 +161,8 @@ open class GoogleSignIN : AppCompatActivity() {
         }
     }
 
-    fun showProgressDialog(text:String){
-        mProgressDialog=Dialog(this)
+    fun showProgressDialog(text:String,){
+        mProgressDialog=Dialog(this,R.style.DialogThemeWhite)
         mProgressDialog.setContentView(R.layout.dialog_progress)
         val dtv= mProgressDialog.findViewById<TextView>(R.id.textView)
         dtv.text=text
