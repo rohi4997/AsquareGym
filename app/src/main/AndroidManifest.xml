@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rohit.cse225ca1">
+    package="com.rohit.asquare">
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -10,11 +12,65 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CSE225CA1">
         <activity
+            android:name=".CartItemDetail"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar"/>
+        <activity
+            android:name=".activities.NoInternetAvailable"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".PaymentSingleItem"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".activities.Faqs"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".activities.TermsConditions"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".activities.AboutUs"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".activities.ContactUs"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".OrderDetailsStatus"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".MyOrders"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".AddAddress"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
             android:name=".ItemDetail"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.NoActionBar"/>
-
+            android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".catagoriesrecycler.CategoryThree"
             android:exported="false" />
@@ -25,7 +81,7 @@
             android:name=".catagoriesrecycler.CategoryOne"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.Light.NoActionBar"/>
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".authentication.GoogleSignIN"
             android:exported="true"
@@ -41,12 +97,14 @@
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".RatingBar"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

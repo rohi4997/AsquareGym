@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemDetail"
+    tools:context=".CartItemDetail"
     android:background="@color/white">
 
     <FrameLayout
@@ -28,7 +28,7 @@
 
         <ImageView
             android:layout_margin="10dp"
-           android:tint="@color/black"
+            android:tint="@color/black"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:src="@drawable/back_24"
@@ -108,13 +108,7 @@
                 android:background="@drawable/button_background"
                 android:text="Buy Now" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/button_background"
-                android:text="Add To Cart" />
+
 
         </LinearLayout>
     </ScrollView>

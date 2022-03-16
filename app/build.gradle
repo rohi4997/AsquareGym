@@ -8,7 +8,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.rohit.cse225ca1"
+        applicationId "com.rohit.asquare"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -54,4 +54,5 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.android.gms:play-services-auth:20.0.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
 }

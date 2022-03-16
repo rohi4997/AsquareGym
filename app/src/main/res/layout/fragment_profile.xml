@@ -43,6 +43,7 @@
             android:layout_height="120dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="275dp"
+            android:background="@color/white"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -122,88 +123,97 @@
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="45dp">
+        android:nestedScrollingEnabled="true"
+        >
         <LinearLayout
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_baseline_email_24"
-                android:tint="@color/teal_700"
-                tools:ignore="UseAppTint" />
-            <TextView
-                android:id="@+id/userEmail"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            >
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingLeft="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_baseline_email_24"
+                    android:tint="@color/teal_700"
+                    tools:ignore="UseAppTint" />
+                <TextView
+                    android:id="@+id/userEmail"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="Wiliam@gmail.com"
+                    android:textColor="@color/teal_200"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/phone_24"
+                    android:tint="@color/teal_700"
+                    tools:ignore="UseAppTint" />
+                <TextView
+                    android:id="@+id/phoneNo"
+                    android:textStyle="bold"
+                    android:textColor="@color/teal_200"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="+91"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/person_24"
+                    android:tint="@color/teal_700"
+                    tools:ignore="UseAppTint" />
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/teal_200"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="311602"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/editProfile"
+                android:textColor="#fff"
+                android:layout_marginTop="35dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="Wiliam@gmail.com"
-                android:textColor="@color/teal_200"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/phone_24"
-                android:tint="@color/teal_700"
-                tools:ignore="UseAppTint" />
-            <TextView
-                android:id="@+id/phoneNo"
-                android:textStyle="bold"
-                android:textColor="@color/teal_200"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="+91"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/person_24"
-                android:tint="@color/teal_700"
-                tools:ignore="UseAppTint" />
-            <TextView
-                android:textStyle="bold"
-                android:textColor="@color/teal_200"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="311602"/>
+                android:text="Edit Profile"
+                android:background="@drawable/button_background"
+                android:padding="10dp"/>
+
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
-    <Button
-        android:id="@+id/editProfile"
-        android:textColor="#fff"
-        android:layout_marginTop="35dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:background="@drawable/button_background"
-        android:padding="10dp"/>
 
 </LinearLayout>

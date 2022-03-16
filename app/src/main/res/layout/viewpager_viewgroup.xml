@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/images"
         android:layout_width="match_parent"
         android:layout_height="119dp"
-        android:src="@drawable/bannersix"
+        android:src="@drawable/postergf"
         android:scaleType="centerCrop"
-        android:background="@drawable/round_corner"/>
+        android:background="@color/teal_200"
+        />
 
 </LinearLayout>
