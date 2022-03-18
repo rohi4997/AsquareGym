@@ -30,20 +30,51 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Batman"
+            android:text="MuscleBlaze"
             android:textSize="15dp"
             android:textColor="@color/black"
             android:padding="5dp"
             />
-        <TextView
-            android:id="@+id/price"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Batman"
-            android:textSize="12dp"
-            android:textColor="@color/black"
-            android:padding="5dp"
-            />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4999"
+                android:textSize="12dp"
+                android:textColor="@color/black"
+                android:padding="5dp"
+                />
+            <TextView
+                android:id="@+id/priceDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5999"
+                android:textSize="12dp"
+                android:textColor="@color/coupanRed"
+                android:padding="5dp"
+                android:foreground="@drawable/strike_text"
+
+
+                />
+            <TextView
+                android:id="@+id/priceoff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30%off"
+                android:textSize="12dp"
+                android:textColor="@color/successGreen"
+                android:padding="5dp"
+
+                />
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"

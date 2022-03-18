@@ -22,6 +22,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.rohit.asquare.MainActivity
 import com.rohit.asquare.R
+import com.rohit.asquare.adminpanel.AdminPanel
 
 
 open class GoogleSignIN : AppCompatActivity() {
@@ -43,9 +44,16 @@ open class GoogleSignIN : AppCompatActivity() {
         dbref = Firebase.database.reference
         auth = FirebaseAuth.getInstance()
         if (auth.currentUser!=null ){
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finish()
+            if (auth.currentUser!!.email=="rohitdhakad976@gmail.com"){
+                val i = Intent(this, AdminPanel::class.java)
+                startActivity(i)
+                finish()
+            }else{
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i)
+                finish()
+            }
+
         }
         googleSignInBtn=findViewById(R.id.navHeaderGoogleSignInBtn)
         initializeClient()
@@ -94,9 +102,15 @@ open class GoogleSignIN : AppCompatActivity() {
                     dbref.child("users").child(uid).child("image").setValue(user?.photoUrl.toString())
 
                     hideProgressDialog()
-                    val i = Intent(this, MainActivity::class.java)
-                    startActivity(i)
-                    finish()
+                    if (auth.currentUser!!.email=="rohitdhakad976@gmail.com"){
+                        val i = Intent(this, AdminPanel::class.java)
+                        startActivity(i)
+                        finish()
+                    }else{
+                        val i = Intent(this, MainActivity::class.java)
+                        startActivity(i)
+                        finish()
+                    }
                     //Toast.makeText(this, """Welcome ${user?.displayName}  """, Toast.LENGTH_LONG).show()
                     //takePhone()
                 } else {

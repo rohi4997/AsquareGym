@@ -7,11 +7,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.util.Log
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -132,15 +132,18 @@ class PaymentSingleItem : AppCompatActivity() {
 
     private fun sendMsg() {
         var obj = SmsManager.getDefault()
-        obj.sendTextMessage("6375376225",null,myText, null,null)
+        obj.sendTextMessage("8875565063",null,myText, null,null)
+
     }
 
     fun initPayment() {
         val uri = Uri.parse("upi://pay").buildUpon()
             .appendQueryParameter("pa", "8875565063@ybl")
             .appendQueryParameter("pn", "A Square Gym")
-            .appendQueryParameter("tn", "Purchased from Asquare")
-            .appendQueryParameter("am", bundle?.get("price").toString())
+//            .appendQueryParameter("mc", "")
+//            .appendQueryParameter("tr", "25584584")
+            .appendQueryParameter("tn", bundle?.get("name").toString())
+            .appendQueryParameter("am", bundle?.get("price").toString())   //bundle?.get("price").toString()
             .appendQueryParameter("cn", "INR").build()
 
         val upiIntent = Intent(Intent.ACTION_VIEW)
@@ -218,7 +221,7 @@ class PaymentSingleItem : AppCompatActivity() {
 
             } else if (paymentCancel.equals("payment cancelled by user.")) {
                 Toast.makeText(this, "payment cancelled", Toast.LENGTH_SHORT).show()
-                //addHistory()
+                addHistory()
 
             } else {
                 Toast.makeText(this, "Transaction Failed. Plaease Try later", Toast.LENGTH_SHORT)
@@ -232,12 +235,12 @@ class PaymentSingleItem : AppCompatActivity() {
     }
 
     private fun addHistory(){
-        dbref = FirebaseDatabase.getInstance().getReference()
-        dbref.child("users").child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("name").setValue(bundle?.get("name").toString())
-        dbref.child("users").child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("price").setValue(bundle?.get("price").toString())
-        dbref.child("users").child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("description").setValue(bundle?.get("detail").toString())
-        dbref.child("users").child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("image").setValue(bundle?.get("image").toString())
-        dbref.child("users").child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("deliveryAddress").setValue(bundle?.get("addr").toString())
+        dbref = FirebaseDatabase.getInstance().getReference("users")
+        dbref.child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("name").setValue(bundle?.get("name").toString())
+        dbref.child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("price").setValue(bundle?.get("price").toString())
+        dbref.child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("description").setValue(bundle?.get("detail").toString())
+        dbref.child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("image").setValue(bundle?.get("image").toString())
+        dbref.child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("deliveryAddress").setValue(bundle?.get("addr").toString())
 
     }
 
@@ -295,5 +298,16 @@ class PaymentSingleItem : AppCompatActivity() {
             //when permission is denied
             Toast.makeText(this,"Please Allow The Permission in Settings",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun mailIt(){
+
+//        val mail = SendMail(
+//            "sender_mail@gmail.com", "sender_pass",
+//            "papayacoders@gmail.com",
+//            "Testing Email Sending",
+//            "Yes, it's working well\nI will use it always."
+//        )
+//        mail.execute()
     }
 }

@@ -12,7 +12,7 @@ import com.rohit.asquare.MyOrders
 import com.rohit.asquare.R
 import com.rohit.asquare.data.CategoryOneData
 
-class MyOrdersAdapter(val context: Context, val equipments:ArrayList<CategoryOneData>, private val listener: MyOrders):RecyclerView.Adapter<MyOrdersAdapter.MyViewHolder>(){
+class MyOrdersAdapter(val context: Context, val equipments:ArrayList<CategoryOneData>, private val listener:Context):RecyclerView.Adapter<MyOrdersAdapter.MyViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.orders_history_viewgroup,parent,false)

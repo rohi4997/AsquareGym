@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adminpanel.AdminPanel">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_weight="1"
+        android:background="#3DDBCD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?attr/homeAsUpIndicator" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="Hello Admin"
+            android:textColor="#6A6363"
+            android:textFontWeight="400"
+            android:textSize="30dp" />
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableRow>
+
+                <ImageView
+                    android:id="@+id/showProducts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/dumbellss" />
+
+                <ImageView
+                    android:id="@+id/deleteProducts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/handgrips" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:text="Show Products"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:text="Delete Products" />
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/c3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/gymsets" />
+
+                <ImageView
+                    android:id="@+id/c4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/more" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:text="Show Products"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:text="Delete Products" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
