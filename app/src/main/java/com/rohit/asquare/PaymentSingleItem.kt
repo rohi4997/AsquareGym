@@ -24,6 +24,8 @@ class PaymentSingleItem : AppCompatActivity() {
     private lateinit var uid: String
     private lateinit var bundle: Bundle
     private lateinit var myText: String
+    var GOOGLE_PAY_PACKAGE_NAME:kotlin.String? = "com.google.android.apps.nbu.paisa.user"
+    var GOOGLE_PAY_REQUEST_CODE = 123
     //private lateinit var address: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +36,10 @@ class PaymentSingleItem : AppCompatActivity() {
         bundle = intent.extras!!
         myText="Hi Admin, \n"+
                 "This Is ${bundle?.get("Name").toString()}\n" +
-                "I would Like to buy the product ${bundle?.get("name").toString()} from your app\n"+
+                "I have ordered a product ${bundle?.get("name").toString()} from your app\n"+
                 "Price: ${bundle?.get("price").toString()}\n" +
                 "Address: ${bundle?.get("Village").toString()}\n"+
-                "Mobile: ${bundle?.get("Mobile").toString()}\n"+
-                "Payment:"
+                "Mobile: ${bundle?.get("Mobile").toString()}\n"
 //                "${bundle?.get("addr").toString()}"
 
 
@@ -84,7 +85,7 @@ class PaymentSingleItem : AppCompatActivity() {
             //Toast.makeText(this, "Cashondelivery", Toast.LENGTH_SHORT).show()
             //builder.setCancelable(true)
             //clearCartAddHistory()
-            areYouSureDialog()
+            //areYouSureDialog()
 
 
         }
@@ -137,17 +138,20 @@ class PaymentSingleItem : AppCompatActivity() {
     }
 
     fun initPayment() {
-        val uri = Uri.parse("upi://pay").buildUpon()
-            .appendQueryParameter("pa", "8875565063@ybl")
-            .appendQueryParameter("pn", "A Square Gym")
-//            .appendQueryParameter("mc", "")
-//            .appendQueryParameter("tr", "25584584")
-            .appendQueryParameter("tn", bundle?.get("name").toString())
-            .appendQueryParameter("am", bundle?.get("price").toString())   //bundle?.get("price").toString()
-            .appendQueryParameter("cn", "INR").build()
+        val uri:Uri = Uri.Builder()
+            .scheme("upi")
+            .authority("pay")
+            .appendQueryParameter("pa", "8875565063@okbizaxis")      //7792074454@ybl    //8875565063@okbizaxis        //8875565063@ybl
+            .appendQueryParameter("pn", "A Square Gym And Fitness Center")                         //A Square Gym And Fitness Center
+         //   .appendQueryParameter("mc", "BCR2DN4TZCX3F4QJ")                                  //BCR2DN4TZCX3F4QJ
+            .appendQueryParameter("tr", "qwertyuioplkjhgfdsazxcvbnm")
+            .appendQueryParameter("tn", myText)
+            .appendQueryParameter("am", "1.00")   //bundle?.get("price").toString()
+            .appendQueryParameter("cu", "INR").build()
 
         val upiIntent = Intent(Intent.ACTION_VIEW)
         upiIntent.setData(uri)
+        //upiIntent.setPackage("com.google.android.apps.nbu.paisa.user")
         val chooser = Intent.createChooser(upiIntent, "Pay With");
         if (this?.let { chooser.resolveActivity(it.packageManager) } != null) {
             startActivityForResult(chooser, 100)
