@@ -3,6 +3,7 @@
     package="com.rohit.asquare">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,14 +13,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CSE225CA1">
         <activity
+            android:name=".adminpanel.AllUsers"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
             android:name=".adminpanel.DeleteProduct"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".adminpanel.ShowAllProducts"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".adminpanel.AddProduct"
-            android:exported="false" />
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
         <activity
             android:name=".adminpanel.AdminPanel"
             android:exported="false"

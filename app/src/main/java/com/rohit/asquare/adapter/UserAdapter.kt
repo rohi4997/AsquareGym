@@ -8,11 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.rohit.asquare.MyOrders
 import com.rohit.asquare.R
-import com.rohit.asquare.data.CategoryOneData
+import com.rohit.asquare.data.User
 
-class MyOrdersAdapter(val context: Context, val equipments:ArrayList<CategoryOneData>, private val listener:Context):RecyclerView.Adapter<MyOrdersAdapter.MyViewHolder>(){
+class UserAdapter(val context: Context, val items : ArrayList<User>,private  val listener: Context): RecyclerView.Adapter<UserAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.orders_history_viewgroup,parent,false)
@@ -20,22 +19,22 @@ class MyOrdersAdapter(val context: Context, val equipments:ArrayList<CategoryOne
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem=equipments[position]
+        val currentItem=items[position]
         //holder.title.text = equipments[position]
-        holder.title.text = currentItem.title
-        holder.description.text=currentItem.description
-        holder.price.text=currentItem.price.toString()
+        holder.name.text = currentItem.name
+        holder.email.text=currentItem.email
+        holder.phone.text=currentItem.phone.toString()
         Glide.with(context).load(currentItem.image).override(150, 150).into(holder.image)
     }
 
     override fun getItemCount(): Int {
-        return equipments.size
+        return items.size
     }
 
-    inner class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView),View.OnClickListener{
-        var title = itemView.findViewById<TextView>(R.id.title)
-        var description = itemView.findViewById<TextView>(R.id.description)
-        var price :TextView=itemView.findViewById(R.id.price)
+    inner class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView), View.OnClickListener{
+        var name = itemView.findViewById<TextView>(R.id.title)
+        var email = itemView.findViewById<TextView>(R.id.description)
+        var phone : TextView =itemView.findViewById(R.id.price)
         var image = itemView.findViewById<ImageView>(R.id.itemImage)
 
 
@@ -49,4 +48,3 @@ class MyOrdersAdapter(val context: Context, val equipments:ArrayList<CategoryOne
     }
 
 }
-

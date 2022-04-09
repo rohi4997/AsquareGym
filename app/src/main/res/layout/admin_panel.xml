@@ -50,7 +50,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/dumbellss" />
+                    android:src="@drawable/allitems" />
 
                 <ImageView
                     android:id="@+id/deleteProducts"
@@ -61,7 +61,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/handgrips" />
+                    android:src="@drawable/deleteicon" />
             </TableRow>
 
             <TableRow>
@@ -73,7 +73,8 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:scaleType="fitCenter"
-                    android:text="Show Products"/>
+                    android:text="Show Products"
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -83,6 +84,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:scaleType="fitCenter"
+                    android:textSize="20sp"
                     android:text="Delete Products" />
             </TableRow>
             <TableRow
@@ -97,10 +99,10 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/gymsets" />
+                    android:src="@drawable/additem" />
 
                 <ImageView
-                    android:id="@+id/c4"
+                    android:id="@+id/allUsers"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -108,7 +110,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/more" />
+                    android:src="@drawable/usericon" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -119,6 +121,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:scaleType="fitCenter"
+                    android:textSize="20sp"
                     android:text="Add Products"/>
 
                 <TextView
@@ -129,7 +132,8 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:scaleType="fitCenter"
-                    android:text="More" />
+                    android:textSize="20sp"
+                    android:text="All Users" />
             </TableRow>
         </TableLayout>
     </LinearLayout>

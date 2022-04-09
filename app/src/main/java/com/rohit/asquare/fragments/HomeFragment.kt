@@ -101,7 +101,6 @@ class HomeFragment : Fragment() ,VerticalRecyclerAdapter.OnClListener{
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
                 mProgressDialog.dismiss()
             }
         })
