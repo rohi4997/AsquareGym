@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.database.*
+import com.rohit.asquare.GymPackages
 import com.rohit.asquare.ItemDetail
 import com.rohit.asquare.adapter.VerticalRecyclerAdapter
 import com.rohit.asquare.adapter.ViewPagerAdapter
@@ -53,7 +54,7 @@ class HomeFragment : Fragment() ,VerticalRecyclerAdapter.OnClListener{
 
 
        c1.setOnClickListener {
-           val i = Intent(context, CategoryOne::class.java)
+           val i = Intent(context, GymPackages::class.java)
            startActivity(i)
        }
        c2.setOnClickListener {

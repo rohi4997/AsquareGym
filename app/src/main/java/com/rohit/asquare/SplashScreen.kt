@@ -8,6 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceIdReceiver
+import com.google.firebase.iid.internal.FirebaseInstanceIdInternal
+import com.google.firebase.messaging.FirebaseMessaging
 import com.rohit.asquare.activities.NoInternetAvailable
 import com.rohit.asquare.authentication.GoogleSignIN
 
@@ -15,6 +20,7 @@ class SplashScreen : AppCompatActivity()
 {    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
+    getNotificationToken()
 
     if (isConnectionAvailable(this)){
         Handler(Looper.getMainLooper()).postDelayed(
@@ -35,6 +41,16 @@ class SplashScreen : AppCompatActivity()
 //                val i = Intent(this,GoogleSignIN::class.java)
 //                startActivity(i)
 //                finish()},2200)
+    }
+
+    private fun getNotificationToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d("Token:", task.result)
+            }else{
+//                Log.d("Token:", "Failed")
+            }
+        })
     }
 
 

@@ -29,8 +29,8 @@
         <ImageView
             android:layout_margin="10dp"
            android:tint="@color/black"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/back_24"
             tools:ignore="UseAppTint" />
 

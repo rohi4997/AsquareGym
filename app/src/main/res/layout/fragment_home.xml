@@ -35,7 +35,7 @@
                 />
 
             <androidx.viewpager2.widget.ViewPager2
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -46,21 +46,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="5dp"
+                android:layout_margin="5dp"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Categories"
-                    android:textColor="#6A6363"
+                    android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:textSize="30dp"
-                    android:textFontWeight="400"
-                    android:fontFamily="@font/roboto_medium"/>
+                    android:text="CATEGORIES"
+                    android:textColor="#6A6363"
+                    android:textFontWeight="800"
+                    android:textSize="25dp"
+                    android:visibility="gone"
+                    />
                 <TableLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -75,7 +79,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_weight="2"
                             android:gravity="center"
-                            android:src="@drawable/dumbellss"
+                            android:src="@drawable/gympackages"
                             android:scaleType="fitCenter"
                             android:layout_margin="5dp"
                             />
@@ -87,7 +91,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_weight="2"
                             android:gravity="center"
-                            android:src="@drawable/handgrips"
+                            android:src="@drawable/protienn"
                             android:scaleType="fitCenter"
                             android:layout_margin="5dp"
                             />
