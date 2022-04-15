@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".adminpanel.AddProduct">
-
-
+    tools:context=".adminpanel.AddPackage">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout5"
         android:layout_width="match_parent"
@@ -35,7 +33,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enter Product Details"
+                android:text="Enter Package Details"
                 android:textSize="20sp"
                 android:layout_gravity="center"/>
 
@@ -73,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Product Name*"
+                android:hint="Package Name* (1Month/ 2Months/ 1 Year)"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/black"/>
@@ -89,6 +87,7 @@
                 android:inputType="textMultiLine"
                 android:hint="Description*"
                 android:layout_marginStart="16dp"
+                android:lines="3"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/black"/>
 
@@ -123,5 +122,6 @@
 
         </LinearLayout>
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

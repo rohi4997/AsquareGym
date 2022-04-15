@@ -3,10 +3,10 @@ package com.rohit.asquare.adminpanel
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DatabaseReference
@@ -16,18 +16,17 @@ import com.google.firebase.storage.StorageReference
 import com.rohit.asquare.R
 import java.util.*
 
-
-class AddProduct : AppCompatActivity() {
+class AddPackage : AppCompatActivity() {
     private var imageUri: Uri? = null
     private lateinit var productImage: ImageView
     private lateinit var dbref: DatabaseReference
     private lateinit var storageRefrence: StorageReference
     private lateinit var storage: FirebaseStorage
     private lateinit var accessToken: Uri
-    lateinit var mProgressDialog:Dialog
+    lateinit var mProgressDialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.add_product_adminpanel)
+        setContentView(R.layout.activity_add_package)
         storage = FirebaseStorage.getInstance()
         storageRefrence = storage.reference
         accessToken = "".toUri()
@@ -65,7 +64,7 @@ class AddProduct : AppCompatActivity() {
     }
 
     private fun uploadOnFirebase(productName: String, productDescription: String, price: String) {
-        dbref = FirebaseDatabase.getInstance().getReference("items")
+        dbref = FirebaseDatabase.getInstance().getReference("packages")
         dbref.child(productName).child("title").setValue(productName)
         dbref.child(productName).child("description").setValue(productDescription)
         dbref.child(productName).child("price").setValue(price)
@@ -86,10 +85,10 @@ class AddProduct : AppCompatActivity() {
 
     private fun uploadImage(productName: String) {
         val randomName = UUID.randomUUID().toString()
-        val imageref: StorageReference = storageRefrence.child("items/products/" + randomName)
+        val imageref: StorageReference = storageRefrence.child("items/packages/" + randomName)
         imageref.putFile(imageUri!!).addOnSuccessListener {
             it.storage.downloadUrl.addOnSuccessListener {
-                dbref = FirebaseDatabase.getInstance().getReference("items")
+                dbref = FirebaseDatabase.getInstance().getReference("packages")
                 dbref.child(productName).child("image").setValue(it.toString())
                 mProgressDialog.dismiss()
                 Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()

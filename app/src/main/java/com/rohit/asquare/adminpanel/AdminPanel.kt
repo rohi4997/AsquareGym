@@ -43,6 +43,9 @@ class AdminPanel : AppCompatActivity() {
         val showProduct= findViewById<ImageView>(R.id.showProducts)
         val deleteProducts= findViewById<ImageView>(R.id.deleteProducts)
         val addProducts= findViewById<ImageView>(R.id.addProducts)
+        val allUsers= findViewById<ImageView>(R.id.allUsers)
+        val deletePackages= findViewById<ImageView>(R.id.deletePackages)
+        val addPackages= findViewById<ImageView>(R.id.addPackages)
 
         showProduct.setOnClickListener {
             val intent = Intent(this,ShowAllProducts::class.java)
@@ -54,6 +57,19 @@ class AdminPanel : AppCompatActivity() {
         }
         addProducts.setOnClickListener {
             val intent = Intent(this,AddProduct::class.java)
+            startActivity(intent)
+        }
+        allUsers.setOnClickListener {
+            val intent = Intent(this,AllUsers::class.java)
+            startActivity(intent)
+        }
+
+        deletePackages.setOnClickListener {
+            val intent = Intent(this,DeletePackage::class.java)
+            startActivity(intent)
+        }
+        addPackages.setOnClickListener {
+            val intent = Intent(this,AddPackage::class.java)
             startActivity(intent)
         }
     }

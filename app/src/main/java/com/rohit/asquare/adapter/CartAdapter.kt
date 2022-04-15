@@ -1,5 +1,6 @@
 package com.rohit.asquare.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import com.rohit.asquare.R
 import com.rohit.asquare.data.MyCartItems
 import com.rohit.asquare.fragments.CartFragment
 
-class CartAdapter(val context: CartFragment, val equipments:ArrayList<MyCartItems>,private val listener: CartAdapter.OnClListener):RecyclerView.Adapter<CartAdapter.MyViewHolder>(){
+class CartAdapter(val context: Context, val equipments:ArrayList<MyCartItems>,private val listener: OnClListener):RecyclerView.Adapter<CartAdapter.MyViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.cart_item_viewgroup,parent,false)
@@ -21,7 +22,7 @@ class CartAdapter(val context: CartFragment, val equipments:ArrayList<MyCartItem
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem=equipments[position]
         //holder.title.text = equipments[position]
-        holder.title.text = currentItem.name
+        holder.title.text = currentItem.title
         holder.description.text=currentItem.description
         holder.price.text=currentItem.price.toString()
         Glide.with(context).load(currentItem.image).into(holder.image)

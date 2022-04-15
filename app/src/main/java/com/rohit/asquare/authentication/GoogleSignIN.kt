@@ -44,7 +44,7 @@ open class GoogleSignIN : AppCompatActivity() {
         dbref = Firebase.database.reference
         auth = FirebaseAuth.getInstance()
         if (auth.currentUser!=null ){
-            if (auth.currentUser!!.email=="rohitdhakad976@gmail.com"){
+            if (auth.currentUser!!.email=="rohit.dhaker@juspay.in" || auth.currentUser!!.email=="asquaregym5063@gmail.com"){
                 val i = Intent(this, AdminPanel::class.java)
                 startActivity(i)
                 finish()
@@ -102,7 +102,7 @@ open class GoogleSignIN : AppCompatActivity() {
                     dbref.child("users").child(uid).child("image").setValue(user?.photoUrl.toString())
 
                     hideProgressDialog()
-                    if (auth.currentUser!!.email=="rohitdhakad976@gmail.com"){
+                    if (auth.currentUser!!.email=="rohit.dhaker@juspay.in"){
                         val i = Intent(this, AdminPanel::class.java)
                         startActivity(i)
                         finish()

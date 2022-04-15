@@ -35,7 +35,7 @@ class CartFragment : Fragment(),CartAdapter.OnClListener {
         val splittedlist = auth.currentUser?.email.toString().split(".")
         uid = splittedlist[0]
         itemArrayList = arrayListOf<MyCartItems>()
-        cartAdapter = CartAdapter(this@CartFragment, itemArrayList, this@CartFragment)
+        cartAdapter = CartAdapter(requireContext(), itemArrayList, this@CartFragment)
 
         //Recycler View1
         cartRecycler = v.findViewById(R.id.myCart)
@@ -68,14 +68,7 @@ class CartFragment : Fragment(),CartAdapter.OnClListener {
         return v
     }
 
-    override fun onResume() {
-        super.onResume()
 
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-    }
 
     private fun getItemData() {
         dbref = FirebaseDatabase.getInstance().getReference("users").child(uid).child("usercart")
@@ -108,7 +101,7 @@ class CartFragment : Fragment(),CartAdapter.OnClListener {
         Toast.makeText(context,"Removed",Toast.LENGTH_SHORT).show()
         val clickedItem = itemArrayList[position]
         dbref = FirebaseDatabase.getInstance().getReference("users")
-        dbref.child(uid).child("usercart").child(clickedItem.name.toString()).setValue(null)
+        dbref.child(uid).child("usercart").child(clickedItem.title.toString()).setValue(null)
         itemArrayList.remove(clickedItem)
         cartAdapter.notifyDataSetChanged()
         //getItemData()
@@ -125,7 +118,7 @@ class CartFragment : Fragment(),CartAdapter.OnClListener {
     override fun onItemClick(position: Int) {
         val intent= Intent(context, CartItemDetail::class.java)
         val clickedItem = itemArrayList[position]
-        intent.putExtra("name",clickedItem.name.toString())
+        intent.putExtra("name",clickedItem.title.toString())
         intent.putExtra("price",clickedItem.price.toString())
         intent.putExtra("detail",clickedItem.description)
         intent.putExtra("image",clickedItem.image)

@@ -1,7 +1,6 @@
 package com.rohit.asquare.adminpanel
 
 import android.app.Dialog
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -14,24 +13,24 @@ import com.rohit.asquare.R
 import com.rohit.asquare.adapter.CartAdapter
 import com.rohit.asquare.data.MyCartItems
 
-class DeleteProduct : AppCompatActivity(), CartAdapter.OnClListener {
-    private  lateinit var dbref: DatabaseReference
+class DeletePackage : AppCompatActivity(), CartAdapter.OnClListener {
+    private lateinit var dbref: DatabaseReference
     private lateinit var cartRecycler: RecyclerView
     private lateinit var itemArrayList: ArrayList<MyCartItems>
     private lateinit var cartAdapter: CartAdapter
     lateinit var mProgressDialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.delete_product_adminpanel)
+        setContentView(R.layout.delete_package_adminpanel)
         val backBtn = findViewById<ImageView>(R.id.back)
         showProgressDialog("Loading...")
         itemArrayList = arrayListOf()
-        cartAdapter = CartAdapter(this@DeleteProduct, itemArrayList, this@DeleteProduct)
+        cartAdapter = CartAdapter(this@DeletePackage, itemArrayList, this@DeletePackage)
 
         //Recycler View1
         cartRecycler = findViewById(R.id.myCart1)
         cartRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        cartRecycler.adapter=cartAdapter
+        cartRecycler.adapter = cartAdapter
         getItemData()
 
         backBtn.setOnClickListener {
@@ -41,7 +40,7 @@ class DeleteProduct : AppCompatActivity(), CartAdapter.OnClListener {
 
 
     private fun getItemData() {
-        dbref = FirebaseDatabase.getInstance().getReference("items")
+        dbref = FirebaseDatabase.getInstance().getReference("packages")
         //dbref = FirebaseDatabase.getInstance().getReference("items")
         dbref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -63,9 +62,9 @@ class DeleteProduct : AppCompatActivity(), CartAdapter.OnClListener {
     }
 
     override fun onButtonClick(position: Int) {
-        Toast.makeText(this,"Removed", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Removed", Toast.LENGTH_SHORT).show()
         val clickedItem = itemArrayList[position]
-        dbref = FirebaseDatabase.getInstance().getReference("items")
+        dbref = FirebaseDatabase.getInstance().getReference("packages")
         dbref.child(clickedItem.title.toString()).setValue(null)
         itemArrayList.remove(clickedItem)
         cartAdapter.notifyDataSetChanged()
@@ -84,14 +83,14 @@ class DeleteProduct : AppCompatActivity(), CartAdapter.OnClListener {
 
     }
 
-    fun showProgressDialog(text:String){
-        mProgressDialog= Dialog(this,R.style.MyDialogTheme)
+    fun showProgressDialog(text: String) {
+        mProgressDialog = Dialog(this, R.style.MyDialogTheme)
         mProgressDialog.setContentView(R.layout.dialog_progress)
-        val dtv= mProgressDialog.findViewById<TextView>(R.id.textView)
-        dtv.text=text
+        val dtv = mProgressDialog.findViewById<TextView>(R.id.textView)
+        dtv.text = text
         mProgressDialog.setCancelable(false)
         mProgressDialog.setCanceledOnTouchOutside(false)
         mProgressDialog.show()
     }
-
 }
+

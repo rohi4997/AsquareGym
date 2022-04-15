@@ -1,13 +1,15 @@
 package com.rohit.asquare.fragments
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.rohit.asquare.GymPackages
 import com.rohit.asquare.MyOrders
 import com.rohit.asquare.R
 import com.rohit.asquare.activities.AboutUs
@@ -49,8 +51,8 @@ class MoreFragment : Fragment() {
             startActivity(intent)
         }
         rateUs.setOnClickListener {
-//            val intent = Intent(this.context,RatingBar::class.java)
-//            startActivity(intent)
+            val intent = Intent(this.context,GymPackages::class.java)
+            startActivity(intent)
         }
         faQ.setOnClickListener {
             val intent = Intent(this.context,Faqs::class.java)
@@ -61,10 +63,11 @@ class MoreFragment : Fragment() {
             startActivity(intent)
         }
 
-//        shareApp.setOnClickListener {
-//            val intent = Intent(this.context,MyOrders::class.java)
-//            startActivity(intent)
-//        }
+        shareApp.setOnClickListener {
+            val uri: Uri = Uri.parse("http://www.asquaregym.com") // missing 'http://' will cause crashed
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
 
         return v
     }

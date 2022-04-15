@@ -26,6 +26,8 @@ class VerticalRecyclerAdapter(val context: HomeFragment, val equipments:ArrayLis
         holder.description.text=currentItem.description
         holder.price.text=currentItem.price.toString()
         Glide.with(context).load(currentItem.image).into(holder.image)
+        var pricedown: Double = ((holder.price.text.toString().toIntOrNull())!! *0.3)+(holder.price.text.toString().toIntOrNull()!!)
+        holder.priceDown.text = "₹ " + pricedown.toString()
 
     }
 
@@ -38,6 +40,9 @@ class VerticalRecyclerAdapter(val context: HomeFragment, val equipments:ArrayLis
         var description = itemView.findViewById<TextView>(R.id.description)
         var price :TextView=itemView.findViewById(R.id.price)
         var image = itemView.findViewById<ImageView>(R.id.itemImage)
+        var priceDown = itemView.findViewById<TextView>(R.id.priceDown)
+        var priceOff = itemView.findViewById<TextView>(R.id.priceoff)
+
 
         init {
             itemView.setOnClickListener(this)

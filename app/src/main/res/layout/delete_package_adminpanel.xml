@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".adminpanel.DeleteProduct"
+    tools:context=".adminpanel.DeletePackage"
     android:weightSum="12">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout5"
         android:layout_width="match_parent"

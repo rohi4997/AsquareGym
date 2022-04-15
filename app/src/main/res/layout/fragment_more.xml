@@ -149,7 +149,7 @@
                     android:drawableEnd="@drawable/next_24"
                     android:drawablePadding="10dp"
                     android:drawableTint="#857D7D"
-                    android:text="Rate Us"
+                    android:text="Gym Packages"
                     android:textColor="#857D7D"
                     android:textSize="16sp" />
 

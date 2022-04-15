@@ -60,7 +60,6 @@
                 android:padding="5dp"
                 android:foreground="@drawable/strike_text"
 
-
                 />
             <TextView
                 android:id="@+id/priceoff"

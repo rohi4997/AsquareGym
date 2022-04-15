@@ -46,7 +46,7 @@ class ItemDetail : AppCompatActivity() {
 
         button.setOnClickListener {
 
-            dbref.child("users").child(uid).child(crt).child(bundle?.get("name").toString()).child("name").setValue(bundle?.get("name").toString())
+            dbref.child("users").child(uid).child(crt).child(bundle?.get("name").toString()).child("title").setValue(bundle?.get("name").toString())
             dbref.child("users").child(uid).child(crt).child(bundle?.get("name").toString()).child("price").setValue(bundle?.get("price").toString())
             dbref.child("users").child(uid).child(crt).child(bundle?.get("name").toString()).child("description").setValue(bundle?.get("detail").toString())
             dbref.child("users").child(uid).child(crt).child(bundle?.get("name").toString()).child("image").setValue(bundle?.get("image").toString())

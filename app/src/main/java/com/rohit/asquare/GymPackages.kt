@@ -1,4 +1,4 @@
-package com.rohit.asquare.adminpanel
+package com.rohit.asquare
 
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
@@ -7,13 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.rohit.asquare.R
 import com.rohit.asquare.adapter.MyOrdersAdapter
+import com.rohit.asquare.adapter.UserAdapter
 import com.rohit.asquare.data.CategoryOneData
+import com.rohit.asquare.data.User
 
-class ShowAllProducts : AppCompatActivity() {
+class GymPackages : AppCompatActivity() {
     private  lateinit var dbref: DatabaseReference
     private lateinit var categoryOneRecycler: RecyclerView
     private lateinit var itemArrayList: ArrayList<CategoryOneData>
@@ -21,10 +21,10 @@ class ShowAllProducts : AppCompatActivity() {
     lateinit var mProgressDialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.show_all_products_adminpanel)
+        setContentView(R.layout.activity_gym_packages)
         showProgressDialog("Loading...")
         itemArrayList= arrayListOf<CategoryOneData>()
-        categoryOneAdapter= MyOrdersAdapter(this,itemArrayList,this@ShowAllProducts)
+        categoryOneAdapter= MyOrdersAdapter(this,itemArrayList,this@GymPackages)
 
         val back = findViewById<ImageView>(R.id.back)
         back.setOnClickListener {
@@ -39,7 +39,7 @@ class ShowAllProducts : AppCompatActivity() {
     }
 
     private fun getItemData() {
-        dbref = FirebaseDatabase.getInstance().getReference("items")
+        dbref = FirebaseDatabase.getInstance().getReference("packages")
 
         dbref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
