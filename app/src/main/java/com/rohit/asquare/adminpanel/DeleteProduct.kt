@@ -52,7 +52,8 @@ class DeleteProduct : AppCompatActivity(), CartAdapter.OnClListener {
                     }
                     cartRecycler.adapter = cartAdapter
                     mProgressDialog.dismiss()
-
+                }else{
+                    mProgressDialog.dismiss()
                 }
             }
 

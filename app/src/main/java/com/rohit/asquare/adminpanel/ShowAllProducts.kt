@@ -50,6 +50,8 @@ class ShowAllProducts : AppCompatActivity() {
                     }
                     categoryOneRecycler.adapter= categoryOneAdapter
                     mProgressDialog.dismiss()
+                }else{
+                    mProgressDialog.dismiss()
                 }
             }
             override fun onCancelled(error: DatabaseError) {

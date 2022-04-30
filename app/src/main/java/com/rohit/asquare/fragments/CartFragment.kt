@@ -1,5 +1,6 @@
 package com.rohit.asquare.fragments
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -27,10 +28,12 @@ class CartFragment : Fragment(),CartAdapter.OnClListener {
     private lateinit var cartAdapter: CartAdapter
     private lateinit var totalAmount:TextView
     private lateinit var clearButton:Button
+    lateinit var mProgressDialog:Dialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         val v = inflater.inflate(R.layout.fragment_cart, container, false)
+        showProgressDialog("Loading Your Cart")
         auth = FirebaseAuth.getInstance()
         val splittedlist = auth.currentUser?.email.toString().split(".")
         uid = splittedlist[0]
@@ -88,11 +91,13 @@ class CartFragment : Fragment(),CartAdapter.OnClListener {
                         clearButton.visibility=View.VISIBLE
                         totalAmount.visibility=View.GONE
                     }
+                }else{
+                    mProgressDialog.dismiss()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                mProgressDialog.dismiss()
             }
         })
     }
@@ -123,6 +128,16 @@ class CartFragment : Fragment(),CartAdapter.OnClListener {
         intent.putExtra("detail",clickedItem.description)
         intent.putExtra("image",clickedItem.image)
         startActivity(intent)
+    }
+
+    fun showProgressDialog(text:String){
+        mProgressDialog= Dialog(this.requireContext(),R.style.MyDialogTheme)
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+        val dtv= mProgressDialog.findViewById<TextView>(R.id.textView)
+        dtv.text=text
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.setCanceledOnTouchOutside(false)
+        mProgressDialog.show()
     }
 
 }
