@@ -1,22 +1,27 @@
 package com.rohit.asquare
 
-import android.app.Activity
-import android.app.AlertDialog
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PaymentSingleItem : AppCompatActivity() {
     private lateinit var dbref: DatabaseReference
@@ -24,12 +29,14 @@ class PaymentSingleItem : AppCompatActivity() {
     private lateinit var uid: String
     private lateinit var bundle: Bundle
     private lateinit var myText: String
+    lateinit var mProgressDialog:Dialog
     var GOOGLE_PAY_PACKAGE_NAME:kotlin.String? = "com.google.android.apps.nbu.paisa.user"
     var GOOGLE_PAY_REQUEST_CODE = 123
     //private lateinit var address: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.payment_single_item)
+        createNotificationChannel()
         auth = FirebaseAuth.getInstance()
         val splittedlist = auth.currentUser?.email.toString().split(".")
         uid = splittedlist[0]
@@ -63,7 +70,7 @@ class PaymentSingleItem : AppCompatActivity() {
     private fun dialogPaymentOpt(){
         val builder = AlertDialog.Builder(this, R.style.MyDialogTheme)
         builder
-            .setMessage("Select The Payment Method")
+            .setMessage("Select Payment Method")
             .setCancelable(true)
         // .setMessage("this is alert")
         val layout = LinearLayout(this)
@@ -85,7 +92,7 @@ class PaymentSingleItem : AppCompatActivity() {
             //Toast.makeText(this, "Cashondelivery", Toast.LENGTH_SHORT).show()
             //builder.setCancelable(true)
             //clearCartAddHistory()
-            //areYouSureDialog()
+            areYouSureDialog()
 
 
         }
@@ -100,13 +107,16 @@ class PaymentSingleItem : AppCompatActivity() {
     private fun areYouSureDialog() {
         val builder = AlertDialog.Builder(this, R.style.MyDialogTheme)
         builder
-            .setMessage("Are You Sure You Want to place This Order")
+            .setMessage("Are You Sure You Want to place This Order\nYou will get a call from our delivery partner")
             .setCancelable(false)
 
         //performing positive action
         builder.setPositiveButton("Yes") { dialogInterface, which ->
             //Toast.makeText(applicationContext, "clicked yes", Toast.LENGTH_LONG).show()
-            initMsg()
+            todayOrders()
+            addHistory()
+
+//            initMsg()
 
         }
 
@@ -141,7 +151,7 @@ class PaymentSingleItem : AppCompatActivity() {
         val uri:Uri = Uri.Builder()
             .scheme("upi")
             .authority("pay")
-            .appendQueryParameter("pa", "8875565063@okbizaxis")      //7792074454@ybl    //8875565063@okbizaxis        //8875565063@ybl
+            .appendQueryParameter("pa", "asquaregymandfitnesscente326@aubank")      //7792074454@ybl    //8875565063@okbizaxis        //8875565063@ybl
             .appendQueryParameter("pn", "A Square Gym And Fitness Center")                         //A Square Gym And Fitness Center
          //   .appendQueryParameter("mc", "BCR2DN4TZCX3F4QJ")                                  //BCR2DN4TZCX3F4QJ
             .appendQueryParameter("tr", "qwertyuioplkjhgfdsazxcvbnm")
@@ -240,11 +250,12 @@ class PaymentSingleItem : AppCompatActivity() {
 
     private fun addHistory(){
         dbref = FirebaseDatabase.getInstance().getReference("users")
-        dbref.child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("name").setValue(bundle?.get("name").toString())
-        dbref.child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("price").setValue(bundle?.get("price").toString())
-        dbref.child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("description").setValue(bundle?.get("detail").toString())
-        dbref.child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("image").setValue(bundle?.get("image").toString())
-        dbref.child(uid).child("userOrderHistory").child(bundle?.get("name").toString()).child("deliveryAddress").setValue(bundle?.get("addr").toString())
+        val uniqueKey = dbref.push().key!!
+        dbref.child(uid).child("userOrderHistory").child(uniqueKey).child("name").setValue(bundle?.get("name").toString())
+        dbref.child(uid).child("userOrderHistory").child(uniqueKey).child("price").setValue(bundle?.get("price").toString())
+        dbref.child(uid).child("userOrderHistory").child(uniqueKey).child("description").setValue(bundle?.get("detail").toString())
+        dbref.child(uid).child("userOrderHistory").child(uniqueKey).child("image").setValue(bundle?.get("image").toString())
+        dbref.child(uid).child("userOrderHistory").child(uniqueKey).child("deliveryAddress").setValue(bundle?.get("addr").toString())
 
     }
 
@@ -313,5 +324,61 @@ class PaymentSingleItem : AppCompatActivity() {
 //            "Yes, it's working well\nI will use it always."
 //        )
 //        mail.execute()
+    }
+
+    private fun todayOrders(){
+        showProgressDialog("Placing Order")
+        val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z")
+        val currentDateAndTime: String = simpleDateFormat.format(Date())
+        dbref = FirebaseDatabase.getInstance().getReference("todayorders")
+        val uniqueKey = dbref.push().key!!
+        dbref.child(uniqueKey).child("name").setValue(bundle?.get("name").toString())
+        dbref.child(uniqueKey).child("price").setValue(bundle?.get("price").toString())
+        dbref.child(uniqueKey).child("description").setValue(bundle?.get("detail").toString())
+        dbref.child(uniqueKey).child("image").setValue(bundle?.get("image").toString())
+        dbref.child(uniqueKey).child("deliveryAddress").setValue(bundle?.get("addr").toString() + " Date:" +currentDateAndTime).addOnSuccessListener {
+            mProgressDialog.dismiss()
+            sendNotification()
+            successDialog()
+        }
+        mProgressDialog.dismiss()
+
+    }
+    fun showProgressDialog(text:String){
+        mProgressDialog= Dialog(this,R.style.MyDialogTheme)
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+        val dtv= mProgressDialog.findViewById<TextView>(R.id.textView)
+        dtv.text=text
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.setCanceledOnTouchOutside(false)
+        mProgressDialog.show()
+    }
+
+    private fun sendNotification(){
+        var builder = NotificationCompat.Builder(this, "CHANNEL_ID")
+            .setSmallIcon(R.mipmap.mic_launcher_foreground)
+            .setContentTitle("Order Placed")
+            .setContentText(bundle?.get("name").toString())
+            .setStyle(NotificationCompat.BigTextStyle()
+                .bigText(bundle?.get("name").toString()))
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+        with(NotificationManagerCompat.from(this)){
+            notify(202,builder.build())
+        }
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Chanel Name"
+            val descriptionText = "Description"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("CHANNEL_ID", name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 }

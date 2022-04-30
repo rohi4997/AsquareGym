@@ -99,6 +99,8 @@ class HomeFragment : Fragment() ,VerticalRecyclerAdapter.OnClListener{
                     popularRecycler.adapter= VerticalRecyclerAdapter(this@HomeFragment,itemArrayList1,this@HomeFragment)
                     horizontalRecyclerView.adapter= VerticalRecyclerAdapter(this@HomeFragment,itemArrayList1,this@HomeFragment)
                     mProgressDialog.dismiss()
+                }else{
+                    mProgressDialog.dismiss()
                 }
             }
             override fun onCancelled(error: DatabaseError) {

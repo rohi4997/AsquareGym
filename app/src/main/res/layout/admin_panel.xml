@@ -22,21 +22,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:paddingTop="30dp">
         <LinearLayout
+            android:paddingBottom="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center"
-                android:text="Hello Admin"
-                android:textColor="#6A6363"
-                android:textFontWeight="400"
-                android:textSize="30dp" />
 
             <TableLayout
                 android:layout_width="fill_parent"
@@ -189,6 +181,56 @@
                         android:text="Delete Packages" />
                 </TableRow>
 
+                <TableRow
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/todayOrders"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/allitems" />
+                    <ImageView
+                        android:id="@+id/allOrders"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/additem"
+                        android:visibility="invisible"/>
+                </TableRow>
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:scaleType="fitCenter"
+                        android:textSize="20sp"
+                        android:text="Cash Delivery Orders" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:scaleType="fitCenter"
+                        android:textSize="20sp"
+                        android:text="Add Packages"
+                        android:visibility="invisible"/>
+                </TableRow>
             </TableLayout>
         </LinearLayout>
     </ScrollView>
